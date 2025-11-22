@@ -28,6 +28,23 @@ function isLegalMove(x, y) {
 
 function knightsTravails(beginning, end) {
 
+  if (!(Array.isArray(beginning) && Array.isArray(end))) {
+    console.log('ERROR: arguments must be arrays of 2 numbers');
+    return null;
+  }
+  if (!(Number.isFinite(beginning[0]) && Number.isFinite(beginning[1])) ||
+      !(Number.isFinite(end[0]) && Number.isFinite(end[1]))
+  ) {
+    console.log('ERROR: arguments must be arrays of 2 numbers');
+    return null;
+  }
+  if (
+    !(isLegalMove(beginning[0], beginning[1]) && isLegalMove(end[0], end[1]))
+  ) {
+    console.log('ERROR: arguments must be arrays of numbers between 0 and 7 (inclusive)');
+    return null;
+  }
+
   let start = new Node(beginning, 0, [beginning]);
   let testEnd = JSON.stringify(end);
   visitedSquares = new Set();
@@ -61,3 +78,6 @@ function knightsTravails(beginning, end) {
 }
 
 knightsTravails([0,0], [3, 6]);
+knightsTravails('blacgh', 'eek');
+knightsTravails([2, 'bleargh'], ['eek', 4]);
+knightsTravails([-1, 7], [2, 9]);
